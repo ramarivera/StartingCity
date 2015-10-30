@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Ejemplo.Entities;
 using NHibernate.Cfg;
+using NHibernate.Exceptions;
 
 namespace Ejemplo
 {
@@ -33,13 +34,20 @@ namespace Ejemplo
                 Telefono = textBoxTelefono.Text.ToString(),
                 Fax = textBoxFax.Text.ToString()
             };
-
-            var hibernateConfiguration = new Configuration().Configure();
-            var sessionFactory = hibernateConfiguration.BuildSessionFactory();
-            var session = sessionFactory.OpenSession();
-            var tx = session.BeginTransaction();
-            session.Save(empleado);
-            tx.Commit(); 
+            try
+            {
+                var hibernateConfiguration = new Configuration().Configure();
+                var sessionFactory = hibernateConfiguration.BuildSessionFactory();
+                var session = sessionFactory.OpenSession();
+                var tx = session.BeginTransaction();
+                session.Save(empleado);
+                tx.Commit();
+            }
+            catch (GenericADOException ex)
+            {
+                throw ex.InnerException;
+            }
+            
         }
         
     }
