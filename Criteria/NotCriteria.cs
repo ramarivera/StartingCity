@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EJ07.Criteria
+namespace Criteria
 {
 
     internal class NotCriteria<T> : ICriteria<T>
@@ -22,7 +22,7 @@ namespace EJ07.Criteria
             // ensure original list is not modified, otherwise compound Or will use an already filtered list
             List<T> notEntities = entities.ToList();
 
-            foreach (E notCriteriaItem in notCriteriaItems)
+            foreach (T notCriteriaItem in notCriteriaItems)
             {
                 notEntities.Remove(notCriteriaItem);
             }

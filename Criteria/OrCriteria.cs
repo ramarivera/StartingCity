@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EJ07.Criteria
+namespace Criteria
 {
     internal class OrCriteria<T> : ICriteria<T>
     {
@@ -17,18 +17,19 @@ namespace EJ07.Criteria
             iOtroCriterio = pOtroCriterio;
         }
 
-        public IList<T> MeetCriteria(IList<T> entities)
+        
+        List<T> ICriteria<T>.MeetCriteria(List<T> entities)
         {
             IList<T> firstCriteriaItems = iUnCriterio.MeetCriteria(entities);
             IList<T> otherCriteriaItems = iOtroCriterio.MeetCriteria(entities);
 
-            foreach (E otherCriteriaItem in otherCriteriaItems)
+            foreach (T otherCriteriaItem in otherCriteriaItems)
             {
                 if (!firstCriteriaItems.Contains(otherCriteriaItem))
                     firstCriteriaItems.Add(otherCriteriaItem);
             }
 
-            return firstCriteriaItems;
+            return (List < T > ) firstCriteriaItems;
         }
     }
 }
