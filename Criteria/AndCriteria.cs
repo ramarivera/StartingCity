@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Criteria
+namespace EJ07.Criteria
 {
     internal class AndCriteria<E> : ICriteria<E>
     {

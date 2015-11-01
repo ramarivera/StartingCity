@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Criteria
+namespace EJ07.Criteria
 {
     public interface ICriteria<E>
     {

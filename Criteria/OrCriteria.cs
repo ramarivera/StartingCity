@@ -4,23 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Criteria
+namespace EJ07.Criteria
 {
-    internal class OrCriteria<E> : ICriteria<E>
+    internal class OrCriteria<T> : ICriteria<T>
     {
-        private ICriteria<E> _criteria;
-        private ICriteria<E> _otherCriteria;
+        private ICriteria<T> iUnCriterio;
+        private ICriteria<T> iOtroCriterio;
 
-        internal OrCriteria(ICriteria<E> criteria, ICriteria<E> otherCriteria)
+        internal OrCriteria(ICriteria<T> pUnCriterio, ICriteria<T> pOtroCriterio)
         {
-            _criteria = criteria;
-            _otherCriteria = otherCriteria;
+            iUnCriterio = pUnCriterio;
+            iOtroCriterio = pOtroCriterio;
         }
 
-        public List<E> MeetCriteria(List<E> entities)
+        public IList<T> MeetCriteria(IList<T> entities)
         {
-            List<E> firstCriteriaItems = _criteria.MeetCriteria(entities);
-            List<E> otherCriteriaItems = _otherCriteria.MeetCriteria(entities);
+            IList<T> firstCriteriaItems = iUnCriterio.MeetCriteria(entities);
+            IList<T> otherCriteriaItems = iOtroCriterio.MeetCriteria(entities);
 
             foreach (E otherCriteriaItem in otherCriteriaItems)
             {

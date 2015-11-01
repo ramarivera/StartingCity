@@ -4,23 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Criteria
+namespace EJ07.Criteria
 {
 
-    internal class NotCriteria<E> : ICriteria<E>
+    internal class NotCriteria<T> : ICriteria<T>
     {
-        private ICriteria<E> _criteria;
+        private ICriteria<T> iUnCriterio;
 
-        internal NotCriteria(ICriteria<E> x)
+        internal NotCriteria(ICriteria<T> x)
         {
-            _criteria = x;
+            iUnCriterio = x;
         }
 
-        public List<E> MeetCriteria(List<E> entities)
+        public List<T> MeetCriteria(List<T> entities)
         {
-            List<E> notCriteriaItems = _criteria.MeetCriteria(entities);
+            List<T> notCriteriaItems = iUnCriterio.MeetCriteria(entities);
             // ensure original list is not modified, otherwise compound Or will use an already filtered list
-            List<E> notEntities = entities.ToList();
+            List<T> notEntities = entities.ToList();
 
             foreach (E notCriteriaItem in notCriteriaItems)
             {
